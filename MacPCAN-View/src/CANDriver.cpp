@@ -8,7 +8,11 @@
 
 #include "CANDriver.hpp"
 
-#include <PCBUSB.h>
+#include <iostream>
+
+namespace PCBUSB {
+    #include <PCBUSB.h>
+}
 
 namespace CAN {
     CANDriver::CANDriver() {
@@ -16,7 +20,14 @@ namespace CAN {
     }
     
     CANDriver::~CANDriver() {
-        /* Empty */
+        unsigned long lStatus = PCBUSB::CAN_Uninitialize(mChannel);
+        
+        /* TODO : ERROR message */
+        if(0U < lStatus) {
+            std::cout << "[ERROR] <CANDriver::init> CAN_Uninitialize failed : Unknown error occured !" << std::endl;
+        }
+        
+        mChannel = 0U;
     }
     
     CANDriver &CANDriver::instance(void) {
@@ -26,12 +37,31 @@ namespace CAN {
     }
     
     int CANDriver::init(const unsigned short &pChannel) {
-        unsigned long lStatus = CAN_Initialize(pChannel, PCAN_BAUD_1M);
+        unsigned long lStatus = PCBUSB::CAN_Initialize(pChannel, PCAN_BAUD_1M);
         
-        return lStatus;
+        if(PCAN_ERROR_NODRIVER == (PCAN_ERROR_NODRIVER & lStatus)) {
+            std::cout << "[ERROR] <CANDriver::init> CAN_Initialize failed : No CAN driver is loaded !" << std::endl;
+            return 1;
+        } else if(0U < lStatus) {
+            std::cout << "[ERROR] <CANDriver::init> CAN_Initialize failed : Unknown error occured !" << std::endl;
+            return 255;
+        }
+        
+        /* TODO : Cover the other error cases */
+        
+        mChannel = pChannel;
+        
+        return 0;
     }
     
     /* Getters */
+    bool CANDriver::isInitialized(void) const {
+        return 0 != mChannel;
+    }
+    
+    unsigned short CANDriver::channel(void) const {
+        return mChannel;
+    }
     
     /* Setters */
     

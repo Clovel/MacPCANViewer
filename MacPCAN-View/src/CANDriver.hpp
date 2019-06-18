@@ -21,6 +21,8 @@ namespace CAN {
         static CANDriver &instance(void);
         
         /* Getters */
+        bool isInitialized(void) const;
+        unsigned short channel(void) const;
         
         /* Setters */
         
@@ -31,7 +33,7 @@ namespace CAN {
         
     private:
         CANDriver();
-        
+        unsigned short mChannel;
     };
 }
 
