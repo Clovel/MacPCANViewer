@@ -1,0 +1,386 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */; };
+		8761A1E622B8D89B00CEBA7B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */; };
+		8761A1E822B8D89C00CEBA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E722B8D89C00CEBA7B /* Assets.xcassets */; };
+		8761A1EB22B8D89C00CEBA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E922B8D89C00CEBA7B /* Main.storyboard */; };
+		8761A20022B8EE2100CEBA7B /* libPCBUSB.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		877B75E822B924A500701B3D /* CANMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75E622B924A500701B3D /* CANMessage.cpp */; };
+		877B75EB22B925AC00701B3D /* CANMessageReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75E922B925AC00701B3D /* CANMessageReader.cpp */; };
+		877B75EE22B925CC00701B3D /* CANMessageSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75EC22B925CC00701B3D /* CANMessageSender.cpp */; };
+		877B75F122B925E200701B3D /* CANDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75EF22B925E200701B3D /* CANDriver.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacPCAN-View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		8761A1E722B8D89C00CEBA7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8761A1EA22B8D89C00CEBA7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8761A1EC22B8D89C00CEBA7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8761A1ED22B8D89C00CEBA7B /* MacPCAN_View.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPCAN_View.entitlements; sourceTree = "<group>"; };
+		8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPCBUSB.dylib; path = ../../../../../../usr/local/lib/libPCBUSB.dylib; sourceTree = "<group>"; };
+		877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPCAN-View-Bridging-Header.h"; sourceTree = "<group>"; };
+		877B75E622B924A500701B3D /* CANMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessage.cpp; sourceTree = "<group>"; };
+		877B75E722B924A500701B3D /* CANMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessage.hpp; sourceTree = "<group>"; };
+		877B75E922B925AC00701B3D /* CANMessageReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessageReader.cpp; sourceTree = "<group>"; };
+		877B75EA22B925AC00701B3D /* CANMessageReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessageReader.hpp; sourceTree = "<group>"; };
+		877B75EC22B925CC00701B3D /* CANMessageSender.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessageSender.cpp; sourceTree = "<group>"; };
+		877B75ED22B925CC00701B3D /* CANMessageSender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessageSender.hpp; sourceTree = "<group>"; };
+		877B75EF22B925E200701B3D /* CANDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANDriver.cpp; sourceTree = "<group>"; };
+		877B75F022B925E200701B3D /* CANDriver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANDriver.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8761A1DD22B8D89B00CEBA7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8761A20022B8EE2100CEBA7B /* libPCBUSB.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8761A1D722B8D89B00CEBA7B = {
+			isa = PBXGroup;
+			children = (
+				8761A1E222B8D89B00CEBA7B /* MacPCAN-View */,
+				8761A1E122B8D89B00CEBA7B /* Products */,
+				8761A1F722B8EB5600CEBA7B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8761A1E122B8D89B00CEBA7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8761A1E222B8D89B00CEBA7B /* MacPCAN-View */ = {
+			isa = PBXGroup;
+			children = (
+				877B75E422B9247500701B3D /* src */,
+				8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */,
+				8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */,
+				8761A1E722B8D89C00CEBA7B /* Assets.xcassets */,
+				8761A1E922B8D89C00CEBA7B /* Main.storyboard */,
+				8761A1EC22B8D89C00CEBA7B /* Info.plist */,
+				8761A1ED22B8D89C00CEBA7B /* MacPCAN_View.entitlements */,
+			);
+			path = "MacPCAN-View";
+			sourceTree = "<group>";
+		};
+		8761A1F722B8EB5600CEBA7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		877B75E422B9247500701B3D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				877B75E622B924A500701B3D /* CANMessage.cpp */,
+				877B75E722B924A500701B3D /* CANMessage.hpp */,
+				877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */,
+				877B75E922B925AC00701B3D /* CANMessageReader.cpp */,
+				877B75EA22B925AC00701B3D /* CANMessageReader.hpp */,
+				877B75EC22B925CC00701B3D /* CANMessageSender.cpp */,
+				877B75ED22B925CC00701B3D /* CANMessageSender.hpp */,
+				877B75EF22B925E200701B3D /* CANDriver.cpp */,
+				877B75F022B925E200701B3D /* CANDriver.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8761A1DF22B8D89B00CEBA7B /* MacPCAN-View */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCAN-View" */;
+			buildPhases = (
+				8761A1DC22B8D89B00CEBA7B /* Sources */,
+				8761A1DD22B8D89B00CEBA7B /* Frameworks */,
+				8761A1DE22B8D89B00CEBA7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MacPCAN-View";
+			productName = "MacPCAN-View";
+			productReference = 8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8761A1D822B8D89B00CEBA7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Clovis Durand";
+				TargetAttributes = {
+					8761A1DF22B8D89B00CEBA7B = {
+						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCAN-View" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8761A1D722B8D89B00CEBA7B;
+			productRefGroup = 8761A1E122B8D89B00CEBA7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8761A1DF22B8D89B00CEBA7B /* MacPCAN-View */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8761A1DE22B8D89B00CEBA7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8761A1E822B8D89C00CEBA7B /* Assets.xcassets in Resources */,
+				8761A1EB22B8D89C00CEBA7B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8761A1DC22B8D89B00CEBA7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8761A1E622B8D89B00CEBA7B /* MessagesViewController.swift in Sources */,
+				877B75E822B924A500701B3D /* CANMessage.cpp in Sources */,
+				8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */,
+				877B75EE22B925CC00701B3D /* CANMessageSender.cpp in Sources */,
+				877B75F122B925E200701B3D /* CANDriver.cpp in Sources */,
+				877B75EB22B925AC00701B3D /* CANMessageReader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8761A1E922B8D89C00CEBA7B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8761A1EA22B8D89C00CEBA7B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8761A1EE22B8D89C00CEBA7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8761A1EF22B8D89C00CEBA7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8761A1F122B8D89C00CEBA7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "MacPCAN-View/MacPCAN_View.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "MacPCAN-View/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clovel.MacPCAN-View";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/src/MacPCAN-View-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8761A1F222B8D89C00CEBA7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "MacPCAN-View/MacPCAN_View.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "MacPCAN-View/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clovel.MacPCAN-View";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/src/MacPCAN-View-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCAN-View" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8761A1EE22B8D89C00CEBA7B /* Debug */,
+				8761A1EF22B8D89C00CEBA7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCAN-View" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8761A1F122B8D89C00CEBA7B /* Debug */,
+				8761A1F222B8D89C00CEBA7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8761A1D822B8D89B00CEBA7B /* Project object */;
+}
