@@ -12,10 +12,6 @@
 		8761A1E822B8D89C00CEBA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E722B8D89C00CEBA7B /* Assets.xcassets */; };
 		8761A1EB22B8D89C00CEBA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E922B8D89C00CEBA7B /* Main.storyboard */; };
 		8761A20022B8EE2100CEBA7B /* libPCBUSB.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		877B75E822B924A500701B3D /* CANMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75E622B924A500701B3D /* CANMessage.cpp */; };
-		877B75EB22B925AC00701B3D /* CANMessageReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75E922B925AC00701B3D /* CANMessageReader.cpp */; };
-		877B75EE22B925CC00701B3D /* CANMessageSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75EC22B925CC00701B3D /* CANMessageSender.cpp */; };
-		877B75F122B925E200701B3D /* CANDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 877B75EF22B925E200701B3D /* CANDriver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,14 +24,6 @@
 		8761A1ED22B8D89C00CEBA7B /* MacPCAN_View.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPCAN_View.entitlements; sourceTree = "<group>"; };
 		8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPCBUSB.dylib; path = ../../../../../../usr/local/lib/libPCBUSB.dylib; sourceTree = "<group>"; };
 		877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPCAN-View-Bridging-Header.h"; sourceTree = "<group>"; };
-		877B75E622B924A500701B3D /* CANMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessage.cpp; sourceTree = "<group>"; };
-		877B75E722B924A500701B3D /* CANMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessage.hpp; sourceTree = "<group>"; };
-		877B75E922B925AC00701B3D /* CANMessageReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessageReader.cpp; sourceTree = "<group>"; };
-		877B75EA22B925AC00701B3D /* CANMessageReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessageReader.hpp; sourceTree = "<group>"; };
-		877B75EC22B925CC00701B3D /* CANMessageSender.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANMessageSender.cpp; sourceTree = "<group>"; };
-		877B75ED22B925CC00701B3D /* CANMessageSender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANMessageSender.hpp; sourceTree = "<group>"; };
-		877B75EF22B925E200701B3D /* CANDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CANDriver.cpp; sourceTree = "<group>"; };
-		877B75F022B925E200701B3D /* CANDriver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CANDriver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,15 +80,7 @@
 		877B75E422B9247500701B3D /* src */ = {
 			isa = PBXGroup;
 			children = (
-				877B75E622B924A500701B3D /* CANMessage.cpp */,
-				877B75E722B924A500701B3D /* CANMessage.hpp */,
 				877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */,
-				877B75E922B925AC00701B3D /* CANMessageReader.cpp */,
-				877B75EA22B925AC00701B3D /* CANMessageReader.hpp */,
-				877B75EC22B925CC00701B3D /* CANMessageSender.cpp */,
-				877B75ED22B925CC00701B3D /* CANMessageSender.hpp */,
-				877B75EF22B925E200701B3D /* CANDriver.cpp */,
-				877B75F022B925E200701B3D /* CANDriver.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -177,11 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8761A1E622B8D89B00CEBA7B /* MessagesViewController.swift in Sources */,
-				877B75E822B924A500701B3D /* CANMessage.cpp in Sources */,
 				8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */,
-				877B75EE22B925CC00701B3D /* CANMessageSender.cpp in Sources */,
-				877B75F122B925E200701B3D /* CANDriver.cpp in Sources */,
-				877B75EB22B925AC00701B3D /* CANMessageReader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
