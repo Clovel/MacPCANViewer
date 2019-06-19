@@ -19,12 +19,18 @@ namespace CAN {
     /** @typedef typedef struct can_msg_t
      * @brief This structure defines the CAN message
      */
-    typedef struct {
+    typedef struct _can_msg {
         uint32_t msg_id;
         uint8_t  data_sz;
         uint8_t  data[CAN_DATA_SZ];
         uint8_t  flags;
     } can_msg_t;
+
+    typedef struct _can_rx_timestamp {
+        uint32_t milliseconds;          //!< Base-value: milliseconds: 0.. 2^32-1
+        uint16_t milliseconds_overflow; //!< Roll-arounds of millis
+        uint16_t microseconds;          //!< Microseconds: 0..999
+    } can_rx_timestamp_t;
     
     /** @typedef typedef struct can_error_level_t
      * @brief This structure defines the CAN bus error levels

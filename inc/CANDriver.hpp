@@ -22,18 +22,18 @@ namespace CAN {
         
         /* Getters */
         bool isInitialized(void) const;
-        unsigned short channel(void) const;
+        uint16_t channel(void) const;
         
         /* Setters */
         
         /* CAN bus manipulation */
-        int init(const unsigned short &pChannel);
-        int send(const can_msg_t &pMsg);
-        int read(can_msg_t &pMsg);
+        uint32_t init(const unsigned short &pChannel);
+        uint32_t send(const can_msg_t &pMsg);
+        uint32_t read(can_msg_t &pMsg, can_rx_timestamp_t &pTimeStamp);
         
     private:
         CANDriver();
-        unsigned short mChannel;
+        uint16_t mChannel;
     };
 }
 
