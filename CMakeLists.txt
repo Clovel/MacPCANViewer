@@ -52,6 +52,14 @@ option(ENABLE_TESTS "Enable Tests" 1)
 find_package(Doxygen)
 option(ENABLE_DOCS "Build API documentation" ${DOXYGEN_FOUND})
 
+# /usr/local paths, needed for MacCAN Library & Includes (PCBUSB)
+include_directories(
+    /usr/local/include/
+)
+link_directories(
+    /usr/local/lib/
+)
+
 #------------------------------------------------------------------------------
 # Project version
 #------------------------------------------------------------------------------
