@@ -12,6 +12,7 @@
 		8761A1E822B8D89C00CEBA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E722B8D89C00CEBA7B /* Assets.xcassets */; };
 		8761A1EB22B8D89C00CEBA7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E922B8D89C00CEBA7B /* Main.storyboard */; };
 		8761A20022B8EE2100CEBA7B /* libPCBUSB.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		877B75F922BA379400701B3D /* CANDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B75F822BA379400701B3D /* CANDriver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,9 @@
 		8761A1EC22B8D89C00CEBA7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8761A1ED22B8D89C00CEBA7B /* MacPCAN_View.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacPCAN_View.entitlements; sourceTree = "<group>"; };
 		8761A1FF22B8EE2100CEBA7B /* libPCBUSB.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libPCBUSB.dylib; path = ../../../../../../usr/local/lib/libPCBUSB.dylib; sourceTree = "<group>"; };
-		877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPCAN-View-Bridging-Header.h"; sourceTree = "<group>"; };
+		877B75F622BA34AD00701B3D /* PCBUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PCBUSB.h; path = ../../../../../../../../usr/local/include/PCBUSB.h; sourceTree = "<group>"; };
+		877B75F722BA34D600701B3D /* MacPCAN-View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacPCAN-View-Bridging-Header.h"; sourceTree = "<group>"; };
+		877B75F822BA379400701B3D /* CANDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CANDriver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		8761A1E222B8D89B00CEBA7B /* MacPCAN-View */ = {
 			isa = PBXGroup;
 			children = (
+				877B75F422BA342800701B3D /* inc */,
 				877B75E422B9247500701B3D /* src */,
 				8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */,
 				8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */,
@@ -80,9 +84,18 @@
 		877B75E422B9247500701B3D /* src */ = {
 			isa = PBXGroup;
 			children = (
-				877B75E522B924A500701B3D /* MacPCAN-View-Bridging-Header.h */,
+				877B75F822BA379400701B3D /* CANDriver.swift */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		877B75F422BA342800701B3D /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				877B75F622BA34AD00701B3D /* PCBUSB.h */,
+				877B75F722BA34D600701B3D /* MacPCAN-View-Bridging-Header.h */,
+			);
+			path = inc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				877B75F922BA379400701B3D /* CANDriver.swift in Sources */,
 				8761A1E622B8D89B00CEBA7B /* MessagesViewController.swift in Sources */,
 				8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */,
 			);
@@ -234,7 +248,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/inc/MacPCAN-View-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Debug;
 		};
@@ -290,7 +306,9 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/inc/MacPCAN-View-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Release;
 		};
@@ -309,7 +327,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clovel.MacPCAN-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/src/MacPCAN-View-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/inc/MacPCAN-View-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -330,7 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clovel.MacPCAN-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/src/MacPCAN-View-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MacPCAN-View/inc/MacPCAN-View-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
