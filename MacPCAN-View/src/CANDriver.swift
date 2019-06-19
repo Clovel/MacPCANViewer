@@ -43,7 +43,14 @@ fileprivate func getErrorText(pStatus: UInt) -> String {
 class CANDriver {
     private var mChannel: CANChannels
     
-    init() {
+    private static var shared: CANDriver = {() -> CANDriver in
+        let lDriver: CANDriver = CANDriver()
+        
+        return lDriver
+    }()
+    
+    /* constructor is private, this is a singleton */
+    private init() {
         mChannel = CANChannels.CHANNEL_NONE
     }
     
@@ -55,11 +62,15 @@ class CANDriver {
         return mChannel.rawValue
     }
     
-    public func initDriver(pChannel: UInt16, pErrorStr: inout String) -> UInt {
-        let lStatus: UInt = CAN_Initialize(pChannel, UInt16(PCAN_BAUD_1M), UInt8(PCAN_USB), 0, 0) /* Args 3, 4, 5 are not used w/ PCAN-USB */
+    public func initDriver(pChannel: CANChannels, pErrorStr: inout String) -> UInt {
+        let lStatus: UInt = CAN_Initialize(pChannel.rawValue, UInt16(PCAN_BAUD_1M), UInt8(PCAN_USB), 0, 0) /* Args 3, 4, 5 are not used w/ PCAN-USB */
         if(0 < lStatus) {
             pErrorStr = getErrorText(pStatus: lStatus)
+            return lStatus
         }
+        
+        /* No error occured, save the initialized channel */
+        mChannel = pChannel
         
         return lStatus
     }
