@@ -9,7 +9,21 @@
 import Cocoa
 
 class MessagesViewController: NSViewController {
-
+    
+    var mCANDriverManager: CANDriverManager = CANDriverManager.instance()
+    
+    @IBOutlet var mRxMsgTableView: NSTableView!
+    @IBOutlet var mTxMsgTableView: NSTableView!
+    //@IBOutlet var mToolBar: NSToolbar!
+    
+    @IBAction func connectClicked(_ sender: NSToolbarItem) {
+        print("[DEBUG] \"Connect\" was clicked !")
+    }
+    
+    @IBAction func newMessageClicked(_ sender: NSToolbarItem) {
+        print("[DEBUG] \"New Message\" was clicked !")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +38,6 @@ class MessagesViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
 
 }
 
