@@ -52,6 +52,9 @@ class CANReader {
                 /* no use in running the thread if the driver is not initialized */
                 break
             }
+            
+            /* Sleep, to avoid maxing out the CPU usage */
+            usleep(100000) /* 100 ms = 100 000 us */
         }
         
         mRunning = false
