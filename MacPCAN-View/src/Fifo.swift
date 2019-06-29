@@ -17,7 +17,7 @@ public class Fifo<T> {
     fileprivate var mArray = [T]()
     fileprivate var mCapacity: Int
     
-    public init(pCapacity: Int) {
+    public init(_ pCapacity: Int) {
         mCapacity = pCapacity
     }
     
