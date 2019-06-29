@@ -110,9 +110,12 @@ class ConnectViewController: NSViewController {
                     self.dismiss(self)
                 }
             } else {
+                /* Launching the CANReader thread */
+                CANReader.instance().run()
+                
                 /* Dismissing the current ViewController (sheet) */
                 print("[DEBUG] <ConnectViewController::connectButtonClicked> Dismissing ConnectViewcontroller")
-                //dismiss(self)
+                dismiss(self)
             }
         }
     }
