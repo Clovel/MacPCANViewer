@@ -31,34 +31,64 @@ class CANReader {
     
     /* Thread worker function */
     public func run() {
-        var lStatus: UInt = 0x0
-        var lErrorText: String = String()
-        while(mDriver.isInitialized()) {
-            /* The thread is running */
-            mRunning = true
-            
-            /* Get the driver's status */
-            lStatus = mDriver.status(&lErrorText)
-            if (0 < lStatus) {
-                let llErrorText = "[ERROR] <CANReader::run> Connection failed : " + lErrorText + " (status = " + String(format:"0x%04X", lStatus) + ")"
-                print(llErrorText)
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
+                return
             }
             
-            /* Check if the driver is still initialized */
-            if(0x4000000 == lStatus) {
-                /* The CAN Channel is not initialized ! */
-                let llErrorText = "[ERROR] <CANReader::run> Driver is not initialized ! (status = " + String(format:"0x%04X", lStatus) + ")"
-                print(llErrorText)
+            var lStatus: UInt = 0x0
+            var lErrorText: String = String()
+            while(self.mDriver.isInitialized()) {
+                /* The thread is running */
+                self.mRunning = true
                 
-                /* Exit the loop */
-                /* no use in running the thread if the driver is not initialized */
-                break
+                /* Get the driver's status */
+                lStatus = self.mDriver.status(&lErrorText)
+                if (0 < lStatus) {
+                    let llErrorText = "[ERROR] <CANReader::run> Got NOK status : " + lErrorText + " (status = " + String(format:"0x%04X", lStatus) + ")"
+                    print(llErrorText)
+                }
+                
+                /* Check if driver is valid */
+                
+                /* Check if the driver is initialized */
+                if(0x4000000 == lStatus) {
+                    /* The CAN Channel is not initialized ! */
+                    let llErrorText = "[ERROR] <CANReader::run> Driver is not initialized ! (status = " + String(format:"0x%04X", lStatus) + ")"
+                    print(llErrorText)
+                    
+                    /* Exit the loop */
+                    /* no use in running the thread if the driver is not initialized */
+                    break
+                }
+                
+                /* Read the CAN driver */
+                var lMsg: TPCANMsg = TPCANMsg(ID: 0x0, MSGTYPE: 0x0, LEN: 0, DATA: (0, 0, 0, 0, 0, 0, 0, 0))
+                var lTs: TPCANTimestamp = TPCANTimestamp(millis: 0, millis_overflow: 0, micros: 0)
+                
+                lStatus = self.mDriver.read(&lMsg, &lTs, &lErrorText)
+                
+                if(!self.mRxMsgFifo.put((lMsg, lTs))) {
+                    /* FIFO is full */
+                    print("[ERROR] Rx FIFO is full, discarding message w/ ID " + String(format: "0x%3X", lMsg.ID) +  " !")
+                    
+                    /* TODO : This section is for debug purposes */
+                    break
+                } else {
+                    print("[DEBUG] Put message in Rx FIFO, has ID " + String(format: "0x%3X", lMsg.ID))
+                }
+                
+                /* Sleep, to avoid maxing out the CPU usage */
+                //usleep(100000) /* 100 ms = 100 000 us */
             }
             
-            /* Sleep, to avoid maxing out the CPU usage */
-            usleep(100000) /* 100 ms = 100 000 us */
+            /* Exiting thread */
+            print("[INFO ] <CANReader::run> Exiting thread...")
+            self.mRunning = false
+            
+            DispatchQueue.main.async {
+                /* Signal the GUI that the thread is no longer running */
+            }
         }
-        
-        mRunning = false
     }
 }
