@@ -12,6 +12,8 @@ class CANReader {
     let mDriver: CANDriver = CANDriver.instance()
     var mRunning: Bool = false
     
+    var mRxMsgFifo: Fifo<(TPCANMsg, TPCANTimestamp)> = Fifo<(TPCANMsg, TPCANTimestamp)>(1024)
+    
     private static var sShared: CANReader = {() -> CANReader in
         let lDriver: CANReader = CANReader()
         
