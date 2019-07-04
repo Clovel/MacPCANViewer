@@ -72,6 +72,9 @@ class MessagesViewController: NSViewController {
         mTxMsgTableView.dataSource = self
         
         print("Hello world !")
+
+        /* Start looking for RxMessages */
+        seekMessages()
     }
 
     override var representedObject: Any? {
@@ -90,7 +93,7 @@ class MessagesViewController: NSViewController {
     
     public func seekMessages() {
         if(mSeekMessagesRunning) {
-            print("[ERROR] The CANReader is already running!")
+            print("[ERROR] <MessagesViewController::seekMessages> The CANReader is already running!")
             return
         }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -98,22 +101,54 @@ class MessagesViewController: NSViewController {
                 return
             }
 
+            print("[DEBUG] <MessagesViewController::seekMessages> Thread launched !")
+
+            #if DEBUG
+            let lTestMsg: CANMessage = CANMessage()
+            lTestMsg.ID = 0x998
+            lTestMsg.size = 8
+            lTestMsg.data = [0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10]
+            lTestMsg.flags = 0xFEDCBA98
+            if(self.mCANReader.mRxMsgFifo.put(lTestMsg)) {
+                print("[DEBUG] <MessagesViewController::seekMessages> A test message has been inserted in the RxFifo")
+                _ = lTestMsg.print(true)
+            }
+            #endif /* DEBUG */
+
             while(true) {
                 self.mSeekMessagesRunning = true
-                while(self.mCANReader.running()) {
+                while(!self.mCANReader.running()) {
                     /* Check if any message are available in the Rx queue */
-                    if(self.mCANReader.messageAvailable()) {
+                    #if DEBUG
+                    var lAddedMsg: Bool = false
+                    #endif /* DEBUG */
+                    while(self.mCANReader.messageAvailable()) {
                         /* Get the message */
+                        print("[DEBUG] <MessagesViewController::seekMessages> A Rx mesage is available !")
                         let lMsg: CANMessage = self.mCANReader.getMessage()!
 
                         /* Insert it in the table view */
                         let lSuccess: Bool = self.updateRxMessagesView(lMsg)
                         if(!lSuccess) {
                             print("[ERROR] <MessagesViewController::seekMessages> updateRxMessagesView failed !")
+                        } else {
+                        #if DEBUG
+                            lAddedMsg = true
+                        #endif /* DEBUG */
+                            self.reloadRxMessageList()
                         }
                     }
+                    #if DEBUG
+                    if(lAddedMsg) {
+                        for i in 0..<self.mRxMessages.count {
+                            _ = self.mRxMessages[i].print(true)
+                        }
+                    }
+                    #endif /* DEBUG */
                 }
             }
+
+            //self.mSeekMessagesRunning = false
         }
     }
 
@@ -205,72 +240,75 @@ extension MessagesViewController: NSTableViewDelegate {
         var lItem: CANMessage?
         if(mRxMsgTableView == tableView) {
             if(mRxMessages.count > row) {
-                lItem = nil
-            } else {
                 lItem = mRxMessages[row]
+            } else {
+                lItem = nil
             }
         } else if(mTxMsgTableView == tableView) {
-            if(mRxMessages.count > row) {
-                lItem = nil
+            if(mTxMessages.count > row) {
+                lItem = mTxMessages[row]
             } else {
-                lItem = mRxMessages[row]
+                lItem = nil
             }
         }
 
         /* Set the cell values */
-        if(mRxMsgTableView == tableView) {
-            if(tableColumn == tableView.tableColumns[0]) {
-                /* Setting the information for the COB-ID cell */
-                lCellIdentifier = RxCellIdentifiers.MsgIDCell
-                lImage = NSImage(named: "right-arrow")
-                lText = String(format:"0x%02X", lItem!.ID)
-            } else if tableColumn == tableView.tableColumns[1] {
-                /* Setting the information for the message data cell */
-                lCellIdentifier = RxCellIdentifiers.DataCell
-                for i in 0...lItem!.size {
-                    lText += String(format:"0x%02X ", lItem!.data[Int(i)])
+        if(nil != lItem) {
+            if(mRxMsgTableView == tableView) {
+                if(tableColumn == tableView.tableColumns[0]) {
+                    /* Setting the information for the COB-ID cell */
+                    lCellIdentifier = RxCellIdentifiers.MsgIDCell
+                    lImage = NSImage(named: "right-arrow")
+                    lText = String(format:"0x%02X", lItem!.ID)
+                } else if tableColumn == tableView.tableColumns[1] {
+                    /* Setting the information for the message data cell */
+                    lCellIdentifier = RxCellIdentifiers.DataCell
+                    for i in 0..<lItem!.size {
+                        lText += String(format:"0x%02X ", lItem!.data[Int(i)])
+                    }
+                } else if tableColumn == tableView.tableColumns[2] {
+                    /* Setting the information for the Flag cell */
+                    lCellIdentifier = RxCellIdentifiers.FlagsCell
+                    lText = String(format: "0x%08X", lItem!.flags)
+                } else if tableColumn == tableView.tableColumns[3] {
+                    /* Setting the information for the message period cell */
+                    lCellIdentifier = RxCellIdentifiers.PeriodCell
+                    lText = String(format: "%d", lItem!.period)
                 }
-            } else if tableColumn == tableView.tableColumns[2] {
-                /* Setting the information for the Flag cell */
-                lCellIdentifier = RxCellIdentifiers.FlagsCell
-                lText = String(format: "0x%02X", lItem!.flags)
-            } else if tableColumn == tableView.tableColumns[3] {
-                /* Setting the information for the message period cell */
-                lCellIdentifier = RxCellIdentifiers.PeriodCell
-                lText = String(format: "%d", lItem!.period)
-            }
-        } else if(mTxMsgTableView == tableView) {
-            if(tableColumn == tableView.tableColumns[0]) {
-                /* Setting the information for the COB-ID cell */
-                lCellIdentifier = TxCellIdentifiers.MsgIDCell
-                lImage = NSImage(named: "left-arrow")
-                lText = String(format:"0x%02X", lItem!.ID)
-            } else if tableColumn == tableView.tableColumns[1] {
-                /* Setting the information for the message data cell */
-                lCellIdentifier = TxCellIdentifiers.DataCell
-                for i in 0...lItem!.size {
-                    lText += String(format:"0x%02X ", lItem!.data[Int(i)])
+            } else if(mTxMsgTableView == tableView) {
+                if(tableColumn == tableView.tableColumns[0]) {
+                    /* Setting the information for the COB-ID cell */
+                    lCellIdentifier = TxCellIdentifiers.MsgIDCell
+                    lImage = NSImage(named: "left-arrow")
+                    lText = String(format:"0x%02X", lItem!.ID)
+                } else if tableColumn == tableView.tableColumns[1] {
+                    /* Setting the information for the message data cell */
+                    lCellIdentifier = TxCellIdentifiers.DataCell
+                    for i in 0..<lItem!.size {
+                        lText += String(format:"0x%02X ", lItem!.data[Int(i)])
+                    }
+                } else if tableColumn == tableView.tableColumns[2] {
+                    /* Setting the information for the Flag cell */
+                    lCellIdentifier = TxCellIdentifiers.FlagsCell
+                    lText = String(format: "0x%08X", lItem!.flags)
+                } else if tableColumn == tableView.tableColumns[3] {
+                    /* Setting the information for the message period cell */
+                    lCellIdentifier = TxCellIdentifiers.PeriodCell
+                    lText = String(format: "%d", lItem!.period)
+                } else if tableColumn == tableView.tableColumns[4] {
+                    /* Setting the infromation for the Active cell */
+                    lCellIdentifier = TxCellIdentifiers.ActiveCell
+                    lText = "NOT IMPLEMENTED"
                 }
-            } else if tableColumn == tableView.tableColumns[2] {
-                /* Setting the information for the Flag cell */
-                lCellIdentifier = TxCellIdentifiers.FlagsCell
-                lText = String(format: "0x%02X", lItem!.flags)
-            } else if tableColumn == tableView.tableColumns[3] {
-                /* Setting the information for the message period cell */
-                lCellIdentifier = TxCellIdentifiers.PeriodCell
-                lText = String(format: "%d", lItem!.period)
-            } else if tableColumn == tableView.tableColumns[4] {
-                /* Setting the infromation for the Active cell */
-                lCellIdentifier = TxCellIdentifiers.ActiveCell
-                lText = "NOT IMPLEMENTED"
             }
-        }
 
-        /* Set the information in a cell and return it. */
-        if let lCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: lCellIdentifier), owner: nil) as? NSTableCellView {
-            lCell.textField?.stringValue = lText
-            lCell.imageView?.image = lImage ?? nil
-            return lCell
+            /* Set the information in a cell and return it. */
+            if let lCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: lCellIdentifier), owner: nil) as? NSTableCellView {
+                lCell.textField?.stringValue = lText
+                lCell.imageView?.image = lImage ?? nil
+                lCell.textField?.toolTip = lText
+                return lCell
+            }
         }
         return nil
     }
