@@ -218,6 +218,18 @@ class CANDriver {
         return lStatus
     }
     
+    public func closeDriver(_ pErrorStr: inout String) -> UInt {
+        let lStatus: UInt = CAN_Uninitialize(mChannel.rawValue)
+        if(0 < lStatus) {
+            pErrorStr = getErrorText(lStatus)
+            return lStatus
+        } else {
+            mChannel = CANChannels.CHANNEL_NONE
+        }
+        
+        return lStatus
+    }
+    
     public func send(_ pMsg: TPCANMsg, _ pErrorStr: inout String) -> UInt {
         var lMsg: TPCANMsg = pMsg /* Copy to avoid having to put inout to pMsg */
         let lPtr: UnsafeMutablePointer<TPCANMsg> = withUnsafeMutablePointer(to: &lMsg) { $0 }
