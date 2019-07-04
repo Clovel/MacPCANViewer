@@ -829,7 +829,7 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="640" height="410"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <subviews>
-                            <scrollView identifier="RxMessagesView" toolTip="Rx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjl-ch-2YO">
+                            <scrollView identifier="RxMessagesView" toolTip="Rx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjl-ch-2YO" userLabel="Rx Msg Table View">
                                 <rect key="frame" x="0.0" y="106" width="640" height="304"/>
                                 <clipView key="contentView" id="bpT-Bu-hwE">
                                     <rect key="frame" x="1" y="0.0" width="638" height="303"/>
@@ -997,7 +997,7 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <scrollView identifier="TxMessagesView" toolTip="Tx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0F-bh-Zp4">
+                            <scrollView identifier="TxMessagesView" toolTip="Tx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0F-bh-Zp4" userLabel="Tx Msg Table View">
                                 <rect key="frame" x="0.0" y="0.0" width="640" height="96"/>
                                 <clipView key="contentView" id="YkS-nb-UNt">
                                     <rect key="frame" x="1" y="0.0" width="638" height="95"/>
