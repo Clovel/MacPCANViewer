@@ -9,6 +9,8 @@
 import Foundation
 
 enum CANChannels: UInt16 {
+    typealias RawValue = UInt16
+
     case CHANNEL_NONE = 0x00
     case CHANNEL_USBBUS1 = 0x51
     case CHANNEL_USBBUS2 = 0x52
@@ -21,6 +23,8 @@ enum CANChannels: UInt16 {
 }
 
 enum CANBusBaudrates: UInt16 {
+    typealias RawValue = UInt16
+
     case CAN_BR_1M     = 0x0014
     case CAN_BR_800K = 0x0016
     case CAN_BR_500K = 0x001C
