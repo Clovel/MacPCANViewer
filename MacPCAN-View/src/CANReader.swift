@@ -9,9 +9,9 @@
 import Foundation
 
 class CANReader {
-    let mDriver: CANDriver = CANDriver.instance()
-    var mRunning: Bool = false
-    
+    private let mDriver: CANDriver = CANDriver.instance()
+    private var mRunning: Bool = false
+
     var mRxMsgFifo: Fifo<(TPCANMsg, TPCANTimestamp)> = Fifo<(TPCANMsg, TPCANTimestamp)>(1024)
     
     private static var sShared: CANReader = {() -> CANReader in
@@ -28,9 +28,21 @@ class CANReader {
     private init() {
         //
     }
+
+    public func messageAvailable() -> Bool {
+        return 0 < mRxMsgFifo.count
+    }
+    
+    public func running() -> Bool {
+        return mRunning
+    }
     
     /* Thread worker function */
     public func run() {
+        if(mRunning) {
+            print("[ERROR] The CANReader is already running!")
+            return
+        }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
                 return
@@ -89,6 +101,19 @@ class CANReader {
             DispatchQueue.main.async {
                 /* Signal the GUI that the thread is no longer running */
             }
+        }
+    }
+
+    public func getMessage() -> CANMessage? {
+        let lRawMsg: (TPCANMsg, TPCANTimestamp)? = 0 < mRxMsgFifo.count ? mRxMsgFifo.get() : nil
+
+        if(nil != lRawMsg) {
+            let lMsg: CANMessage = createFromTPCANMsgWithTimeStamp(lRawMsg!)
+
+            return lMsg
+        } else {
+            print("[ERROR] <CANReader::getMessage> Internal fifo gave us a NULL object !")
+            return nil
         }
     }
 }
