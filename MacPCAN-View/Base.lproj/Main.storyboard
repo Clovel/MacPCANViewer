@@ -793,10 +793,18 @@ Gw
                                         <segue destination="t48-01-fqJ" kind="sheet" id="PkM-wK-YR2"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="A57F9F7F-D5E2-463D-8994-A61699165E82" explicitItemIdentifier="DisconnectButtonID" label="Disconnect" paletteLabel="Disconnect" tag="-1" image="Thunder" id="mea-8j-DOB" userLabel="Disconnect">
+                                    <size key="minSize" width="512" height="512"/>
+                                    <size key="maxSize" width="512" height="512"/>
+                                    <connections>
+                                        <action selector="disconnectClicked:" target="Oky-zY-oP4" id="piY-ol-55E"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="4g2-4h-hpM"/>
                                 <toolbarItem reference="h4V-7F-kPS"/>
+                                <toolbarItem reference="mea-8j-DOB"/>
                                 <toolbarItem reference="n1g-a8-kui"/>
                             </defaultToolbarItems>
                         </toolbar>
