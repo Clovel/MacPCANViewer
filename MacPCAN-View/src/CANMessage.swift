@@ -52,6 +52,36 @@ class CANMessage {
 
         period = 0
     }
+
+    public func print(_ pOutput: Bool) -> String {
+        var lStr: String = ""
+        if(isRx) {
+            lStr += "> Rx : "
+        } else {
+            lStr += "< Tx : "
+        }
+
+        lStr += String(format: "ID: 0x%02X ", ID)
+        lStr += String(format: "Size: %d ", size)
+
+        lStr += "["
+        for i in 0..<size {
+            //lStr += String(format:"0x%02X ", data[Int(i)])
+            if(size - 1 > i) {
+                lStr += String(format:"0x%02X ", data[Int(i)])
+            } else {
+                lStr += String(format:"0x%02X", data[Int(i)])
+            }
+        }
+        lStr += "] "
+        lStr += String(format: "Flags: 0x%08X", flags)
+
+        if(pOutput) {
+            Swift.print(lStr)
+        }
+
+        return lStr
+    }
 }
 
 fileprivate func arrayFromTuple<T,R>(pTuple: T) -> [R] {
