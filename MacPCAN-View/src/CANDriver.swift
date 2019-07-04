@@ -186,6 +186,13 @@ class CANDriver {
         mChannel = CANChannels.CHANNEL_NONE
     }
     
+    deinit {
+        if(isInitialized()) {
+            var lErrorText: String = ""
+            _ = closeDriver(&lErrorText)
+        }
+    }
+    
     public func isInitialized() -> Bool {
         return CANChannels.CHANNEL_NONE == mChannel ? false : true
     }
