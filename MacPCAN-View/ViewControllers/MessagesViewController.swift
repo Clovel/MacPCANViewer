@@ -128,14 +128,16 @@ class MessagesViewController: NSViewController {
                         let lMsg: CANMessage = self.mCANReader.getMessage()!
 
                         /* Insert it in the table view */
-                        let lSuccess: Bool = self.updateRxMessagesView(lMsg)
+                        let lSuccess: Bool = self.updateRxMessages(lMsg)
                         if(!lSuccess) {
                             print("[ERROR] <MessagesViewController::seekMessages> updateRxMessagesView failed !")
                         } else {
                         #if DEBUG
                             lAddedMsg = true
                         #endif /* DEBUG */
-                            self.reloadRxMessageList()
+                            DispatchQueue.main.async {
+                                self.reloadRxMessageList()
+                            }
                         }
                     }
                     #if DEBUG
@@ -152,7 +154,7 @@ class MessagesViewController: NSViewController {
         }
     }
 
-    fileprivate func updateRxMessagesView(_ pMsg: CANMessage) -> Bool{
+    fileprivate func updateRxMessages(_ pMsg: CANMessage) -> Bool{
         /* Look if the message already exists */
         var lFound: Bool = false
         for element in mRxMessages {
@@ -303,10 +305,12 @@ extension MessagesViewController: NSTableViewDelegate {
             }
 
             /* Set the information in a cell and return it. */
-            if let lCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: lCellIdentifier), owner: nil) as? NSTableCellView {
+            if let lCell: NSTableCellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: lCellIdentifier), owner: nil) as? NSTableCellView {
                 lCell.textField?.stringValue = lText
                 lCell.imageView?.image = lImage ?? nil
                 lCell.textField?.toolTip = lText
+                lCell.textField?.autoresizesSubviews = true
+                //lCell.textField?.
                 return lCell
             }
         }
