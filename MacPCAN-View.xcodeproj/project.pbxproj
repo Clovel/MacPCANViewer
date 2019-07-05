@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87456D2C22CF484A0050A248 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87456D2B22CF484A0050A248 /* NewMessageViewController.swift */; };
 		8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */; };
 		8761A1E622B8D89B00CEBA7B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */; };
 		8761A1E822B8D89C00CEBA7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8761A1E722B8D89C00CEBA7B /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87456D2B22CF484A0050A248 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacPCAN-View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */,
 				877B760522BA97AA00701B3D /* ConnectViewController.swift */,
+				87456D2B22CF484A0050A248 /* NewMessageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				87F0511B22CE2B57001D6B2F /* CANMessage.swift in Sources */,
 				877B760422BA88F900701B3D /* CANSender.swift in Sources */,
 				8761A1E422B8D89B00CEBA7B /* AppDelegate.swift in Sources */,
+				87456D2C22CF484A0050A248 /* NewMessageViewController.swift in Sources */,
 				877B75FD22BA7F5400701B3D /* CANReader.swift in Sources */,
 				877B760622BA97AA00701B3D /* ConnectViewController.swift in Sources */,
 			);
