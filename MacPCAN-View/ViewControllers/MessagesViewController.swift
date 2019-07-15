@@ -11,8 +11,13 @@ import Cocoa
 class MessagesViewController: NSViewController {
     
     var mCANDriverManager: CANDriverManager = CANDriverManager.instance()
+
     var mCANReader: CANReader = CANReader.instance()
-    var mSeekMessagesRunning: Bool = false
+    var mCANSender: CANSender = CANSender.instance()
+
+    var mSeekRxMessagesRunning: Bool = false
+    var mSeekTxMessagesRunning: Bool = false
+
     var mRxMessages: [CANMessage] = [CANMessage]()
     var mTxMessages: [CANMessage] = [CANMessage]()
     
@@ -180,7 +185,7 @@ class MessagesViewController: NSViewController {
                 element.flags = pMsg.flags
 
                 /* TODO : Calculate period */
-                element.period = Float(((pMsg.millis - element.millis)*1000 + (pMsg.micros - element.micros))) / 1000.0
+                element.period = Float( ((Int(pMsg.millis) - Int(element.millis))*1000) + (Int(pMsg.micros) - Int(element.micros))) / 1000
 
                 element.isRx = pMsg.isRx
                 element.millis = pMsg.millis
@@ -286,7 +291,7 @@ extension MessagesViewController: NSTableViewDelegate {
                 } else if tableColumn == tableView.tableColumns[3] {
                     /* Setting the information for the message period cell */
                     lCellIdentifier = RxCellIdentifiers.PeriodCell
-                    lText = String(format: "%d", lItem!.period)
+                    lText = String(format: "%.3f", lItem!.period)
                 }
             } else if(mTxMsgTableView == tableView) {
                 if(tableColumn == tableView.tableColumns[0]) {
@@ -307,7 +312,7 @@ extension MessagesViewController: NSTableViewDelegate {
                 } else if tableColumn == tableView.tableColumns[3] {
                     /* Setting the information for the message period cell */
                     lCellIdentifier = TxCellIdentifiers.PeriodCell
-                    lText = String(format: "%d", lItem!.period)
+                    lText = String(format: "%.3f", lItem!.period)
                 } else if tableColumn == tableView.tableColumns[4] {
                     /* Setting the infromation for the Active cell */
                     lCellIdentifier = TxCellIdentifiers.ActiveCell
