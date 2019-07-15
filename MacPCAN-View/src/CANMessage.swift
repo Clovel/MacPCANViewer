@@ -26,7 +26,7 @@ class CANMessage {
     /* Data */
     public var ID: UInt
     public var size: UInt
-    public var data:[UInt]
+    public var data: [UInt]
     public var type: CANMessageType
     public var flags: UInt
 
