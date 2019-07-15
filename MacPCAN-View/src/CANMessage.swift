@@ -101,7 +101,10 @@ func createFromTPCANMsg(_ pCANRxMsg: TPCANMsg) -> CANMessage {
     lMsg.ID = pCANRxMsg.ID
     lMsg.size = UInt(pCANRxMsg.LEN)
     let lCDataArray: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) = pCANRxMsg.DATA
-    lMsg.data = arrayFromTuple(pTuple: lCDataArray)
+    let lTempArray: [UInt8] = arrayFromTuple(pTuple: lCDataArray)
+    for i in 0..<Int(lMsg.size) {
+        lMsg.data.append(UInt(lTempArray[i]))
+    }
     lMsg.type = CANMessageType(rawValue: UInt(pCANRxMsg.MSGTYPE))!
 
     return lMsg
