@@ -74,7 +74,9 @@ class MessagesViewController: NSViewController {
         print("Hello world !")
 
         /* Start looking for RxMessages */
-        seekMessages()
+        seekRxMessages()
+
+        /* Start looking for TxMessages */
     }
 
     override var representedObject: Any? {
@@ -91,17 +93,18 @@ class MessagesViewController: NSViewController {
         mTxMsgTableView.reloadData()
     }
     
-    public func seekMessages() {
-        if(mSeekMessagesRunning) {
-            print("[ERROR] <MessagesViewController::seekMessages> The CANReader is already running!")
+    public func seekRxMessages() {
+        if(mSeekRxMessagesRunning) {
+            print("[ERROR] <MessagesViewController::seekRxMessages> The CANReader is already running!")
             return
         }
+
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
                 return
             }
 
-            print("[DEBUG] <MessagesViewController::seekMessages> Thread launched !")
+            print("[DEBUG] <MessagesViewController::seekRxMessages> Thread launched !")
 
             #if DEBUG
             let lTestMsg: CANMessage = CANMessage()
@@ -109,31 +112,32 @@ class MessagesViewController: NSViewController {
             lTestMsg.size = 8
             lTestMsg.data = [0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10]
             lTestMsg.flags = 0xFEDCBA98
+            lTestMsg.period = 99.0
             if(self.mCANReader.mRxMsgFifo.put(lTestMsg)) {
-                print("[DEBUG] <MessagesViewController::seekMessages> A test message has been inserted in the RxFifo")
+                print("[DEBUG] <MessagesViewController::seekRxMessages> A test message has been inserted in the RxFifo")
                 _ = lTestMsg.print(true)
             }
             #endif /* DEBUG */
 
             while(true) {
-                self.mSeekMessagesRunning = true
-                while(!self.mCANReader.running()) {
+                self.mSeekRxMessagesRunning = true
+                while(self.mCANReader.running()) {
                     /* Check if any message are available in the Rx queue */
                     #if DEBUG
-                    var lAddedMsg: Bool = false
+//                    var lAddedMsg: Bool = false
                     #endif /* DEBUG */
                     while(self.mCANReader.messageAvailable()) {
                         /* Get the message */
-                        print("[DEBUG] <MessagesViewController::seekMessages> A Rx mesage is available !")
+                        print("[DEBUG] <MessagesViewController::seekRxMessages> A Rx message is available !")
                         let lMsg: CANMessage = self.mCANReader.getMessage()!
 
                         /* Insert it in the table view */
                         let lSuccess: Bool = self.updateRxMessages(lMsg)
                         if(!lSuccess) {
-                            print("[ERROR] <MessagesViewController::seekMessages> updateRxMessagesView failed !")
+                            print("[ERROR] <MessagesViewController::seekRxMessages> updateRxMessagesView failed !")
                         } else {
                         #if DEBUG
-                            lAddedMsg = true
+                            //lAddedMsg = true
                         #endif /* DEBUG */
                             DispatchQueue.main.async {
                                 self.reloadRxMessageList()
@@ -141,18 +145,25 @@ class MessagesViewController: NSViewController {
                         }
                     }
                     #if DEBUG
-                    if(lAddedMsg) {
-                        for i in 0..<self.mRxMessages.count {
-                            _ = self.mRxMessages[i].print(true)
-                        }
-                    }
+//                    if(lAddedMsg) {
+//                        for i in 0..<self.mRxMessages.count {
+//                            _ = self.mRxMessages[i].print(true)
+//                        }
+//                    }
                     #endif /* DEBUG */
+
+                    /* Sleep, to avoid maxing out the CPU usage */
+                    //usleep(50000) /* 50 ms = 50 000 us */
                 }
+
+                /* Sleep, to avoid maxing out the CPU usage */
+                //usleep(50000) /* 50 ms = 50 000 us */
             }
 
-            //self.mSeekMessagesRunning = false
+            self.mSeekRxMessagesRunning = false
         }
     }
+
 
     fileprivate func updateRxMessages(_ pMsg: CANMessage) -> Bool{
         /* Look if the message already exists */
