@@ -16,38 +16,50 @@ import Foundation
 public class Fifo<T> {
     fileprivate var mArray = [T]()
     fileprivate var mCapacity: Int
+    fileprivate var mSerialQueue: DispatchQueue
     
-    public init(_ pCapacity: Int) {
+    public init(_ pCapacity: Int, pQoS: DispatchQoS = .default) {
         mCapacity = pCapacity
+        mSerialQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".fifo", qos: pQoS, attributes: .concurrent)
     }
     
     public var isEmpty: Bool {
-        return mArray.isEmpty
+        return mSerialQueue.sync {
+            mArray.isEmpty
+        }
     }
     
     public var count: Int {
-        return mArray.count
+        return mSerialQueue.sync {
+            mArray.count
+        }
     }
     
     /* this function allows the user to take a peak at the first element */
     public var front: T? {
-        return mArray.first
+        return mSerialQueue.sync {
+            mArray.first
+        }
     }
     
     public func put(_ pElement: T) -> Bool {
-        if(mCapacity == count) {
-            return false /* FIFO is full ! */
-        } else {
-            mArray.append(pElement)
-            return true
+        return mSerialQueue.sync(flags: .barrier) {
+            if(mCapacity == mArray.count) {
+                return false /* FIFO is full ! */
+            } else {
+                mArray.append(pElement)
+                return true
+            }
         }
     }
     
     public func get() -> T? {
-        if(isEmpty) {
-            return nil
-        } else {
-            return mArray.removeFirst()
+        return mSerialQueue.sync(flags: .barrier) {
+            if(mArray.isEmpty) {
+                return nil
+            } else {
+                return mArray.removeFirst()
+            }
         }
     }
 }
