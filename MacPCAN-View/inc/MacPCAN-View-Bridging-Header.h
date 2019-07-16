@@ -6,4 +6,5 @@
 //  Copyright © 2019 Clovis Durand. All rights reserved.
 //
 
+/* PEAK USB MacCAN library header */
 #import <PCBUSB.h>
