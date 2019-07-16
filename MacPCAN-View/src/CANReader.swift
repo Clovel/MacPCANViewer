@@ -32,6 +32,7 @@ class CANReader {
         lTestMsg.size = 8
         lTestMsg.data = [0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10]
         lTestMsg.flags = 0xFEDCBA98
+        lTestMsg.period = 45.67
         if(mRxMsgFifo.put(lTestMsg)) {
             print("[DEBUG] <CANReader::run> A test message has been inserted in the RxFifo")
             _ = lTestMsg.print(true)
@@ -93,18 +94,21 @@ class CANReader {
                 var lTs: TPCANTimestamp = TPCANTimestamp(millis: 0, millis_overflow: 0, micros: 0)
                 
                 lStatus = self.mDriver.read(&lMsg, &lTs, &lErrorText)
+                if((PCAN_ERROR_BUSWARNING  == lStatus ) || (PCAN_ERROR_BUSLIGHT  == lStatus ) || (PCAN_ERROR_BUSHEAVY  == lStatus ) || (PCAN_ERROR_BUSPASSIVE  == lStatus ) || (PCAN_ERROR_OK == lStatus ) ) {
+                    /* Message status seems OK */
 
-                /* Translate the message to the CANMessage class model type */
-                let lCANMessage: CANMessage = createFromTPCANMsgWithTimeStamp((lMsg, lTs))
-                
-                if(!self.mRxMsgFifo.put(lCANMessage)) {
-                    /* FIFO is full */
-                    print("[ERROR] <CANReader::run> Rx FIFO is full, discarding message w/ ID " + String(format: "0x%3X", lCANMessage.ID) +  " !")
-                    
-                    /* TODO : This section is for debug purposes */
-                    break
-                } else {
-                    print("[DEBUG] <CANReader::run> Put message in Rx FIFO, has ID " + String(format: "0x%3X", lMsg.ID))
+                    /* Translate the message to the CANMessage class model type */
+                    let lCANMessage: CANMessage = createFromTPCANMsgWithTimeStamp((lMsg, lTs))
+
+                    if(!self.mRxMsgFifo.put(lCANMessage)) {
+                        /* FIFO is full */
+                        print("[ERROR] <CANReader::run> Rx FIFO is full, discarding message w/ ID " + String(format: "0x%3X", lCANMessage.ID) +  " !")
+
+                        /* TODO : This section is for debug purposes */
+                        break
+                    } else {
+                        print("[DEBUG] <CANReader::run> Put message in Rx FIFO, has ID " + String(format: "0x%3X", lMsg.ID))
+                    }
                 }
                 
                 /* Sleep, to avoid maxing out the CPU usage */
