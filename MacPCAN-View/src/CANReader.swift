@@ -107,7 +107,7 @@ class CANReader {
                         /* TODO : This section is for debug purposes */
                         break
                     } else {
-                        print("[DEBUG] <CANReader::run> Put message in Rx FIFO, has ID " + String(format: "0x%3X", lMsg.ID))
+                        //print("[DEBUG] <CANReader::run> Put message in Rx FIFO, has ID " + String(format: "0x%3X", lMsg.ID))
                     }
                 }
                 
@@ -119,9 +119,9 @@ class CANReader {
             print("[INFO ] <CANReader::run> Exiting thread...")
             self.mRunning = false
             
-            DispatchQueue.main.async {
-                /* Signal the GUI that the thread is no longer running */
-            }
+//            DispatchQueue.main.async {
+//                /* Signal the GUI that the thread is no longer running */
+//            }
         }
     }
 
