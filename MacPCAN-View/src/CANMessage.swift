@@ -95,29 +95,61 @@ fileprivate func arrayFromTuple<T,R>(pTuple: T) -> [R] {
     return lArray
 }
 
-func createFromTPCANMsg(_ pCANRxMsg: TPCANMsg) -> CANMessage {
+func createFromTPCANMsg(_ pCANMsg: TPCANMsg) -> CANMessage {
 
     let lMsg: CANMessage = CANMessage()
-    lMsg.ID = pCANRxMsg.ID
-    lMsg.size = UInt(pCANRxMsg.LEN)
-    let lCDataArray: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) = pCANRxMsg.DATA
+    lMsg.ID = pCANMsg.ID
+    lMsg.size = UInt(pCANMsg.LEN)
+    let lCDataArray: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) = pCANMsg.DATA
     let lTempArray: [UInt8] = arrayFromTuple(pTuple: lCDataArray)
     for i in 0..<Int(lMsg.size) {
         lMsg.data.append(UInt(lTempArray[i]))
     }
-    lMsg.type = CANMessageType(rawValue: UInt(pCANRxMsg.MSGTYPE))!
+    lMsg.type = CANMessageType(rawValue: UInt(pCANMsg.MSGTYPE))!
 
     return lMsg
 }
 
-func createFromTPCANMsgWithTimeStamp(_ pCANRxMsg: (TPCANMsg, TPCANTimestamp)) -> CANMessage {
+func createFromTPCANMsgWithTimeStamp(_ pCANMsg: (TPCANMsg, TPCANTimestamp)) -> CANMessage {
 
-    let lMsg: CANMessage = createFromTPCANMsg(pCANRxMsg.0)
+    let lMsg: CANMessage = createFromTPCANMsg(pCANMsg.0)
 
     lMsg.isRx = true
-    lMsg.millis = pCANRxMsg.1.millis
-    lMsg.millisOverflow = UInt(pCANRxMsg.1.millis_overflow)
-    lMsg.micros = UInt(pCANRxMsg.1.micros)
+    lMsg.millis = pCANMsg.1.millis
+    lMsg.millisOverflow = UInt(pCANMsg.1.millis_overflow)
+    lMsg.micros = UInt(pCANMsg.1.micros)
+
+    return lMsg
+}
+
+func convertToTPCANMsg(_ pCANMsg: CANMessage) -> TPCANMsg {
+    var lMsg: TPCANMsg = TPCANMsg()
+
+    lMsg.ID = pCANMsg.ID
+    lMsg.LEN = UInt8(pCANMsg.size)
+    lMsg.MSGTYPE = UInt8(pCANMsg.type.rawValue)
+
+/* TODO : I must find a better way to do this... */
+    if(1 == lMsg.LEN) {
+        lMsg.DATA.0 = UInt8(pCANMsg.data[0])
+    } else if(2 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[1])
+    } else if(3 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[2])
+    } else if(4 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[3])
+    } else if(5 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[4])
+    } else if(6 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[5])
+    } else if(7 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[6])
+    } else if(8 == lMsg.LEN) {
+        lMsg.DATA.1 = UInt8(pCANMsg.data[7])
+    } else {
+        /* ERROR */
+        print("[ERROR] <convertToTPCANMsg> Message length > 8 !")
+    }
 
     return lMsg
 }
