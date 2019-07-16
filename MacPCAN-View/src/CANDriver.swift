@@ -211,7 +211,7 @@ class CANDriver {
         let _: UInt = CAN_GetErrorText(pStatus, CANDriverLocales.PCBUSB_LOCAL_ENGLISH.rawValue, lBufferPtr)
         
         let lStr: String = String(cString: lBufferPtr)
-        print("[DEBUG] <CANDriver.swift::getErrorText> lStr = " + lStr + " (status = " + String(format:"0x%04X", pStatus) + ")")
+        //print("[DEBUG] <CANDriver::getErrorText> lStr = " + lStr + " (status = " + String(format:"0x%04X", pStatus) + ")")
         
         return lStr
     }
