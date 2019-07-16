@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Darwin
 
 class MessagesViewController: NSViewController {
     
@@ -109,7 +110,7 @@ class MessagesViewController: NSViewController {
                 return
             }
 
-            print("[DEBUG] <MessagesViewController::seekRxMessages> Thread launched !")
+            print("[DEBUG] <MessagesViewController::seekRxMessages> Message update thread launched !")
 
             #if DEBUG
             let lTestMsg: CANMessage = CANMessage()
@@ -117,7 +118,7 @@ class MessagesViewController: NSViewController {
             lTestMsg.size = 8
             lTestMsg.data = [0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10]
             lTestMsg.flags = 0xFEDCBA98
-            lTestMsg.period = 99.0
+            lTestMsg.period = 99.9
             if(self.mCANReader.mRxMsgFifo.put(lTestMsg)) {
                 print("[DEBUG] <MessagesViewController::seekRxMessages> A test message has been inserted in the RxFifo")
                 _ = lTestMsg.print(true)
@@ -144,9 +145,6 @@ class MessagesViewController: NSViewController {
                         #if DEBUG
                             //lAddedMsg = true
                         #endif /* DEBUG */
-                            DispatchQueue.main.async {
-                                self.reloadRxMessageList()
-                            }
                         }
                     }
                     #if DEBUG
@@ -156,16 +154,33 @@ class MessagesViewController: NSViewController {
 //                        }
 //                    }
                     #endif /* DEBUG */
-
-                    /* Sleep, to avoid maxing out the CPU usage */
-                    //usleep(50000) /* 50 ms = 50 000 us */
                 }
 
                 /* Sleep, to avoid maxing out the CPU usage */
-                //usleep(50000) /* 50 ms = 50 000 us */
+                usleep(100_000) /* 100 ms = 100 000 us */
             }
 
             self.mSeekRxMessagesRunning = false
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            print("[DEBUG] <MessagesViewController::seekRxMessages> GUI update thread launched !")
+
+            while(true) {
+                /* Sleep, to avoid maxing out the CPU usage */
+                usleep(100_000) /* 100 ms = 100 000 us */
+
+                DispatchQueue.main.async {
+                    if(0 < self.mRxMessages.count) {
+                        /* Reload GUI */
+                        self.reloadRxMessageList()
+                    }
+                }
+            }
         }
     }
 
