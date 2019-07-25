@@ -1,32 +1,82 @@
-# Prerequisites
+# Project build files ---------------------------
+Debug/
+build/
+build_x86/
+build_arm/
+Testing/
+image/
+output/
+
+# CMake related files ---------------------------
+Makefile
+CMakeCache.txt
+.project
+.settings
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+CMakeFiles/
+CMakeScripts/
+
+# VS Code related files -------------------------
+.vscode/
+
+# Doxygen related files -------------------------
+html/
+latex/
+man/
+
+# MS Office related files -----------------------
+~*
+
+# Unix related files ----------------------------
+*.swp
+
+# Uncrustify related files ----------------------
+*.unc-backup*
+#*.unc-backup.md5*
+src_file_list*.txt
+
+# pkg-config generated files --------------------
+*.pc
+
+# Prerequisites ---------------------------------
 *.d
 
-# Compiled Object files
+# Compiled Object files -------------------------
 *.slo
 *.lo
 *.o
 *.obj
 
-# Precompiled Headers
+# Precompiled Headers ---------------------------
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
+# Compiled Dynamic libraries --------------------
 *.so
 *.dylib
 *.dll
 
-# Fortran module files
+# Fortran module files --------------------------
 *.mod
 *.smod
 
-# Compiled Static libraries
+# Compiled Static libraries ---------------------
 *.lai
 *.la
 *.a
 *.lib
 
-# Executables
+# Executables -----------------------------------
 *.exe
 *.out
 *.app
+
+# OS Related files ------------------------------
+.DS_Store
+
+examples/test
