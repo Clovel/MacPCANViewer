@@ -33,7 +33,7 @@ class CANSender {
         lTestMsg.data = [0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10]
         lTestMsg.flags = 0xFEDCBA98
 
-        lTestMsg.period = 10.5
+        lTestMsg.period = 15.5
         if(mTxMsgFifo.put(lTestMsg)) {
             print("[DEBUG] <CANSender::run> A test message has been inserted in the TxFifo")
             _ = lTestMsg.print(true)
@@ -98,17 +98,6 @@ class CANSender {
             DispatchQueue.main.async {
                 /* Signal the GUI that the thread is no longer running */
             }
-        }
-    }
-
-    public func getMessage() -> CANMessage? {
-        let lMsg: CANMessage? = 0 < mTxMsgFifo.count ? mTxMsgFifo.get() : nil
-
-        if(nil != lMsg) {
-            return lMsg
-        } else {
-            print("[ERROR] <CANSender::getMessage> Internal fifo gave us a NULL object !")
-            return nil
         }
     }
 }

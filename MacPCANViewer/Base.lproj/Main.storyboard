@@ -8,7 +8,7 @@
         <!--New Message View-->
         <scene sceneID="3rG-02-Jbq">
             <objects>
-                <viewController title="New Message View" id="yDd-8q-z5K" customClass="NewMessageViewController" customModule="MacPCAN_View" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="New Message View" id="yDd-8q-z5K" customClass="NewMessageViewController" customModule="MacPCANViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="HNm-al-EeK">
                         <rect key="frame" x="0.0" y="0.0" width="550" height="172"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -235,13 +235,13 @@ Gw
         <!--Connection View-->
         <scene sceneID="rQw-2q-0ci">
             <objects>
-                <viewController title="Connection View" id="t48-01-fqJ" customClass="ConnectViewController" customModule="MacPCAN_View" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Connection View" id="t48-01-fqJ" customClass="ConnectViewController" customModule="MacPCANViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <stackView key="view" distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="IUu-Cb-MDP">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="110"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wtk-pK-bb8">
-                                <rect key="frame" x="77" y="86" width="99" height="26"/>
+                                <rect key="frame" x="0.0" y="86" width="253" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="CAN Interface" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="ewz-6z-XOA">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -249,7 +249,7 @@ Gw
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P77-3y-JhH">
-                                <rect key="frame" x="77" y="52" width="99" height="26"/>
+                                <rect key="frame" x="0.0" y="52" width="253" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="CAN Bus Baudrate" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="MZX-aY-ZBt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -322,11 +322,11 @@ Gw
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="MacPCAN-View" id="1Xt-HY-uBw">
+                            <menuItem title="MacPCANViewer" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="MacPCAN-View" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="MacPCANViewer" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About MacPCAN-View" id="5kV-Vb-QxS">
+                                        <menuItem title="About MacPCANViewer" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -340,7 +340,7 @@ Gw
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide MacPCAN-View" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide MacPCANViewer" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -358,7 +358,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit MacPCAN-View" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit MacPCANViewer" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -971,7 +971,7 @@ Gw
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="MacPCAN-View Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="MacPCANViewer Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -985,7 +985,7 @@ Gw
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MacPCAN_View" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MacPCANViewer" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -995,7 +995,7 @@ Gw
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowID" title="Mac PCAN View" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" identifier="MainWindowID" title="Mac PEAK CAN Viewer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="735" y="469" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1200"/>
@@ -1052,19 +1052,19 @@ Gw
         <!--Messages View-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="Messages View" id="XfG-lQ-9wD" customClass="MessagesViewController" customModule="MacPCAN_View" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Messages View" id="XfG-lQ-9wD" customClass="MessagesViewController" customModule="MacPCANViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <stackView key="view" wantsLayer="YES" distribution="fillEqually" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="ac0-8C-d5M">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="410"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <subviews>
                             <scrollView identifier="RxMessagesView" toolTip="Rx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjl-ch-2YO" userLabel="Rx Msg Table View">
-                                <rect key="frame" x="0.0" y="106" width="640" height="304"/>
+                                <rect key="frame" x="0.0" y="210" width="640" height="200"/>
                                 <clipView key="contentView" id="bpT-Bu-hwE">
-                                    <rect key="frame" x="1" y="0.0" width="638" height="288"/>
+                                    <rect key="frame" x="1" y="0.0" width="638" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="SYX-Xd-E68" viewBased="YES" id="tcf-wu-Nv6">
-                                            <rect key="frame" x="0.0" y="0.0" width="798" height="263"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="798" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1212,8 +1212,8 @@ Gw
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.97499999999999998" horizontal="YES" id="gdT-pd-meK">
-                                    <rect key="frame" x="1" y="288" width="638" height="15"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gdT-pd-meK">
+                                    <rect key="frame" x="1" y="184" width="638" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="uZh-ar-9ks">
@@ -1226,13 +1226,13 @@ Gw
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView identifier="TxMessagesView" toolTip="Tx Messages" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0F-bh-Zp4" userLabel="Tx Msg Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="640" height="96"/>
+                                <rect key="frame" x="0.0" y="0.0" width="640" height="200"/>
                                 <clipView key="contentView" id="YkS-nb-UNt">
-                                    <rect key="frame" x="1" y="0.0" width="638" height="80"/>
+                                    <rect key="frame" x="1" y="0.0" width="638" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="rGI-KM-d5R" viewBased="YES" id="tup-gV-qma">
-                                            <rect key="frame" x="0.0" y="0.0" width="644" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="644" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1413,8 +1413,8 @@ Gw
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.33333333333333331" horizontal="YES" id="1L0-C3-znf">
-                                    <rect key="frame" x="1" y="80" width="638" height="15"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1L0-C3-znf">
+                                    <rect key="frame" x="1" y="184" width="638" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="nCP-ej-FSP">

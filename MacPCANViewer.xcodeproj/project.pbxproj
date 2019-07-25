@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		87456D2B22CF484A0050A248 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
-		8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacPCAN-View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8761A1E022B8D89B00CEBA7B /* MacPCANViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPCANViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8761A1E322B8D89B00CEBA7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8761A1E522B8D89B00CEBA7B /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8761A1E722B8D89C00CEBA7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		8761A1D722B8D89B00CEBA7B = {
 			isa = PBXGroup;
 			children = (
-				8761A1E222B8D89B00CEBA7B /* MacPCAN-View */,
+				8761A1E222B8D89B00CEBA7B /* MacPCANViewer */,
 				8761A1E122B8D89B00CEBA7B /* Products */,
 				8761A1F722B8EB5600CEBA7B /* Frameworks */,
 			);
@@ -67,12 +67,12 @@
 		8761A1E122B8D89B00CEBA7B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */,
+				8761A1E022B8D89B00CEBA7B /* MacPCANViewer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8761A1E222B8D89B00CEBA7B /* MacPCAN-View */ = {
+		8761A1E222B8D89B00CEBA7B /* MacPCANViewer */ = {
 			isa = PBXGroup;
 			children = (
 				877B760022BA879A00701B3D /* ViewControllers */,
@@ -84,7 +84,7 @@
 				8761A1EC22B8D89C00CEBA7B /* Info.plist */,
 				8761A1ED22B8D89C00CEBA7B /* MacPCAN_View.entitlements */,
 			);
-			path = "MacPCAN-View";
+			path = MacPCANViewer;
 			sourceTree = "<group>";
 		};
 		8761A1F722B8EB5600CEBA7B /* Frameworks */ = {
@@ -130,9 +130,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8761A1DF22B8D89B00CEBA7B /* MacPCAN-View */ = {
+		8761A1DF22B8D89B00CEBA7B /* MacPCANViewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCAN-View" */;
+			buildConfigurationList = 8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCANViewer" */;
 			buildPhases = (
 				8761A1DC22B8D89B00CEBA7B /* Sources */,
 				8761A1DD22B8D89B00CEBA7B /* Frameworks */,
@@ -142,9 +142,9 @@
 			);
 			dependencies = (
 			);
-			name = "MacPCAN-View";
+			name = MacPCANViewer;
 			productName = "MacPCAN-View";
-			productReference = 8761A1E022B8D89B00CEBA7B /* MacPCAN-View.app */;
+			productReference = 8761A1E022B8D89B00CEBA7B /* MacPCANViewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -163,7 +163,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCAN-View" */;
+			buildConfigurationList = 8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCANViewer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -176,7 +176,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8761A1DF22B8D89B00CEBA7B /* MacPCAN-View */,
+				8761A1DF22B8D89B00CEBA7B /* MacPCANViewer */,
 			);
 		};
 /* End PBXProject section */
@@ -400,7 +400,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCAN-View" */ = {
+		8761A1DB22B8D89B00CEBA7B /* Build configuration list for PBXProject "MacPCANViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8761A1EE22B8D89C00CEBA7B /* Debug */,
@@ -409,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCAN-View" */ = {
+		8761A1F022B8D89C00CEBA7B /* Build configuration list for PBXNativeTarget "MacPCANViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8761A1F122B8D89C00CEBA7B /* Debug */,
